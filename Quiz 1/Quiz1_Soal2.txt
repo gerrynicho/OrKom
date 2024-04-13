@@ -1,0 +1,28 @@
+Calling Program
+             MOVE                     R2, #STRING
+             LOAD                     R3, #0x61
+             LOAD                     R6, #0x7A
+             SUBTRACT                 R2, #4
+             CALL                     ALLCAPS
+             END
+
+Subroutine
+ALLCAPS      LOAD                     R4, #0x00
+LOOP    :    ADD                      R2, #4
+             BRANCH_IF_[(R2)]=[R4]    DONE
+             BRANCH_IF_[(R2)]<[R3]    LOOP
+             BRANCH_IF_[(R2)]>[R6]    LOOP
+             SUBTRACT                 (R2), #32
+             BRANCH                   LOOP
+DONE    :    RETURN
+
+1. R2 pointer yg move ke char pertamanya STRING
+2. kita mundurin posisi R2 dari 1 byte soalnya di loop kita increment 4 dulu
+3. masukin R3 buat ascii 'a'
+4. panggil subroutine ALLCAPS
+5. declarasi null byte (end of string)
+6. masuk loop, kita increment lagi R2 jadi balik ke posisi awal char STRING
+7. cek klo literal R2 itu udh carriage return blom, klo udh kita lompat ke DONE yg cuma returnn
+8. klo blom, lanjut nge cek klo literal R2 itu lebih kecil dari literal R3 (R2 < 'a' nge cek klo itu udh capital blom) klo udh capital, kita increment ke char berikutnya
+9. klo gk, kita minus 32 gara" buat capitalize ascii, itu lowercase-32
+10. lanjut ke char berikutnya
