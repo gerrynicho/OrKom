@@ -48,7 +48,8 @@ EA (Effective Address) adalah alamat efektif yang digunakan untuk mengakses sebu
     EA = ( (R4 + R5) + 28) = ( (2000 + 3000) + 28) = 5028
 (d) (R4)+
     EA = R4 = 2000
-    lalu R4 = R4 + 4 = 2000 + 4 = 2004
+    lalu R4 = R4 + 4 = 2000 + 4 = 2000
+    (EA mengambil literal value R4, bkn mengambil address R4)
     (kita tambah 4 karena kita menggunakan 32-bit word (4 byte))
 (e) -(R4)
     EA = R4 - 4 = 2000 - 4 = 1996
